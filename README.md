@@ -16,6 +16,7 @@ English | [简体中文](./README-zh.md)
 git clone https://github.com/PanJiaChen/vue-admin-template.git
 
 # enter the project directory
+#cd 尤尼科系统
 cd vue-admin-template
 
 # install dependency

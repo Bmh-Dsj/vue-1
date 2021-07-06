@@ -6,7 +6,9 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-const name = defaultSettings.title || 'vue Admin Template' // page title
+const name = defaultSettings.title || '尤尼科系统' // page title
+// const name = defaultSettings.title || 'vue Admin Template' // page title
+
 
 // If your port is set to 80,
 // use administrator privileges to execute the command line.
@@ -14,6 +16,12 @@ const name = defaultSettings.title || 'vue Admin Template' // page title
 // You can change the port by the following methods:
 // port = 9528 npm run dev OR npm run dev --port = 9528
 const port = process.env.port || process.env.npm_config_port || 9528 // dev port
+
+//gzip 压缩______________________________
+const CompressionPlugin = require('compression-webpack-plugin')
+const productionGzipExtensions = /\.(js|css|json|txt|html|ico|svg)(\?.*)?$/i
+//______________________________
+
 
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
 module.exports = {
@@ -24,11 +32,31 @@ module.exports = {
    * In most cases please use '/' !!!
    * Detail: https://cli.vuejs.org/config/#publicpath
    */
-  publicPath: '/',
-  outputDir: 'dist',
+  publicPath: './',
+  //outputDir: 'dist',
   assetsDir: 'static',
-  lintOnSave: process.env.NODE_ENV === 'development',
+  // lintOnSave: process.env.NODE_ENV === 'development',
+  lintOnSave: false,
   productionSourceMap: false,
+
+
+
+  //
+  // dev: {
+  //
+  //   // Paths
+  //   assetsSubDirectory: 'static',
+  //   assetsPublicPath: '/',
+    //proxyTable: {
+    //   '/api': {
+    //     target: 'http://39.102.203.193:9090', //后期可以改
+    //     changeOrigin: true,
+    //     pathRewrite: {
+    //       '^/api': ''
+    //     }
+    //   //}
+    // }, //配置跨域支持
+  // },
   devServer: {
     port: port,
     open: true,
@@ -36,7 +64,17 @@ module.exports = {
       warnings: false,
       errors: true
     },
-    before: require('./mock/mock-server.js')
+    // proxy: {
+    //   [process.env.VUE_APP_BASE_API]: {
+    //     target: 'http://39.102.203.193:9090', //后期可以改
+    //     changeOrigin: true,
+    //     pathRewrite: {
+    //       // '^/api': ''
+    //       ['^'+process.env.VUE_APP_BASE_API]:''
+    //     }
+    //   }
+    // },
+    // before: require('./mock/mock-server.js')
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
@@ -46,9 +84,10 @@ module.exports = {
       alias: {
         '@': resolve('src')
       }
-    }
+    },
   },
   chainWebpack(config) {
+
     // it can improve the speed of the first screen, it is recommended to turn on preload
     config.plugin('preload').tap(() => [
       {

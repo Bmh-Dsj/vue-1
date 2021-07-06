@@ -1,7 +1,7 @@
 module.exports = {
 
-  title: 'Vue Admin Template',
-
+  title: '尤尼科系統',
+  // title: 'Vue Admin Template',
   /**
    * @type {boolean} true | false
    * @description Whether fix the header
@@ -12,5 +12,6 @@ module.exports = {
    * @type {boolean} true | false
    * @description Whether show the logo in sidebar
    */
-  sidebarLogo: false
+  sidebarLogo: false,
+
 }

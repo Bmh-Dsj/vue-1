@@ -32,10 +32,17 @@ export default {
           href: to,
           target: '_blank',
           rel: 'noopener'
+
+          // is:'a',
+          // href:to,
+          // target:'_blank',
+          // rel:'noopener'
         }
       }
       return {
         to: to
+        // is:'router-link',
+        // to:'redirect' + to
       }
     }
   }
